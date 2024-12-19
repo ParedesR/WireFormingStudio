@@ -1,0 +1,30 @@
+﻿<igWpf:RibbonTabItem x:Class="Aim.WireFormingStudio.Modules.EsViewPort.Menus.EsViewPortTab"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                    
+                     xmlns:prism="http://prismlibrary.com/"
+                     prism:ViewModelLocator.AutoWireViewModel="True"    
+                     xmlns:igWpf="http://schemas.infragistics.com/xaml/wpf"   
+                     xmlns:localConverters="clr-namespace:AosLibraries.UIComponents.WpfResources.Converters;assembly=AosLibraries.UIComponents.WpfResources"
+                     xmlns:language="clr-namespace:Aim.WireFormingStudio.Languages;assembly=Aim.WireFormingStudio.Languages"
+                     Header="{x:Static language:WireFormingStudioStrings.EsViewPort_View_Title}">
+
+    <igWpf:RibbonTabItem.Resources>
+        <localConverters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    </igWpf:RibbonTabItem.Resources>
+
+    <!-- =============================================================== Linear Model Tab Item ================================================================================= -->
+    <!-- Model Group -->
+    <igWpf:RibbonGroup Id="LineModelGroup" Caption="{x:Static language:WireFormingStudioStrings.ViewPort_RibbonMenu_LineModelGroup_Label}">
+        <igWpf:RibbonGroup.ToolTip>
+            <igWpf:XamRibbonScreenTip Header="{x:Static language:WireFormingStudioStrings.ViewPort_RibbonMenu_LineModelGroup_ToolTipLabel}" FooterSeparatorVisibility="Hidden"
+                                         Content="{x:Static language:WireFormingStudioStrings.ViewPort_RibbonMenu_LineModelGroup_ToolTipText}"/>
+        </igWpf:RibbonGroup.ToolTip>
+        <igWpf:ToolHorizontalWrapPanel>
+            <!-- Load Model Button -->
+            <igWpf:ButtonTool Caption="{x:Static language:WireFormingStudioStrings.ViewPort_RibbonMenu_LoadLineModelButtonLabel}" Margin="3"
+                                       igWpf:RibbonGroup.MaximumSize="ImageAndTextLarge" LargeImage="..\Resources/Images/32x32/OpenModel.png"                                                                             
+                                       Command="{Binding OpenLineModelCommand}">
+            </igWpf:ButtonTool>
+        </igWpf:ToolHorizontalWrapPanel>
+    </igWpf:RibbonGroup>
+</igWpf:RibbonTabItem>

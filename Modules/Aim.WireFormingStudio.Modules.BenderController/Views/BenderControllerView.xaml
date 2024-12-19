@@ -1,0 +1,20 @@
+﻿<aimCoreViews:AimViewBase x:Class="Aim.WireFormingStudio.Modules.BenderController.Views.BenderControllerView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                          xmlns:ig="http://schemas.infragistics.com/xaml"
+                          xmlns:igWpf="http://schemas.infragistics.com/xaml/wpf"       
+                          xmlns:igDock="http://infragistics.com/DockManager"       
+                          xmlns:igThemes="http://infragistics.com/Themes"  
+                          xmlns:igPrim="http://schemas.infragistics.com/xaml/primitives"
+                          xmlns:igDP="http://infragistics.com/DataPresenter"      
+                          xmlns:igEditors="http://infragistics.com/Editors"                          
+                          xmlns:prism="http://prismlibrary.com/"             
+                          prism:ViewModelLocator.AutoWireViewModel="True"
+                          xmlns:aimCoreViews="clr-namespace:Aim.WireFormingStudio.Core.Views;assembly=Aim.WireFormingStudio.Core">
+    
+    <Grid>
+            
+    </Grid>
+</aimCoreViews:AimViewBase>

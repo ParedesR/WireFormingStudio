@@ -1,0 +1,63 @@
+﻿<aimCoreViews:AimViewBase x:Class="Aim.WireFormingStudio.Modules.SmartEditor.Views.EditLrarSegmentView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                           xmlns:ig="http://schemas.infragistics.com/xaml"
+                          xmlns:igEditors="http://infragistics.com/Editors"     
+                          xmlns:prism="http://prismlibrary.com/"
+                          xmlns:language="clr-namespace:Aim.WireFormingStudio.Languages;assembly=Aim.WireFormingStudio.Languages"                        
+                          prism:ViewModelLocator.AutoWireViewModel="True"
+                          xmlns:aimCoreViews="clr-namespace:Aim.WireFormingStudio.Core.Views;assembly=Aim.WireFormingStudio.Core"
+                          Height="200"
+                          Width="300">
+    
+    <Grid x:Name="EditLrarSegmentRootLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/AosLibraries.UIComponents.WpfResources;component/Styles/AosDataTypesEditorsResourceDictionary.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+                <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="80*"/>            
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="LblLrarLength" Content="Length" Grid.Column="0" Grid.Row="0" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <igEditors:XamMaskedEditor x:Name="TxtLrarLength" Grid.Column="1" Grid.Row="0" MinWidth="200" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Mask="nnn.nnnn" IsAlwaysInEditMode="True" DisplayMode="IncludeLiterals" PromptChar=" " TabNavigation="NextSection"
+                                   Value="{Binding LrarLength, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label x:Name="LblLrarRotation" Content="Rotation" Grid.Column="0" Grid.Row="1" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <igEditors:XamMaskedEditor x:Name="TxtLrarRotation" Grid.Column="1" Grid.Row="1" MinWidth="200" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Mask="-nnn.nnnn" IsAlwaysInEditMode="True" DisplayMode="IncludeLiterals" PromptChar=" " TabNavigation="NextSection"
+                                   Value="{Binding LrarRotation, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label x:Name="LblLrarAngle" Content="Angle" Grid.Column="0" Grid.Row="2" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <igEditors:XamMaskedEditor x:Name="TxtLrarAngle" Grid.Column="1" Grid.Row="2" MinWidth="200" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Mask="-nnn.nnnn" IsAlwaysInEditMode="True" DisplayMode="IncludeLiterals" PromptChar=" " TabNavigation="NextSection"
+                                   Value="{Binding LrarAngle, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label x:Name="LblLrarRadius" Content="Radius" Grid.Column="0" Grid.Row="3" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <igEditors:XamMaskedEditor x:Name="TxtLrarRadius" Grid.Column="1" Grid.Row="3" MinWidth="200" Margin="3,3,3,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                   Mask="nnn.nnnn" IsAlwaysInEditMode="True" DisplayMode="IncludeLiterals" PromptChar=" " TabNavigation="NextSection"
+                                   Value="{Binding LrarRadius, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <!-- ============================================================  Button Controls =============================================================== -->
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Button x:Name="OkBtn" MinWidth="60" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Content="{x:Static language:WireFormingStudioStrings.Generic_OkButtonLabel}" 
+                    Command="{Binding DoEditLrarSegmentCommand}"/>
+            <Button x:Name="CancelBtn" MinWidth="60" Margin="0,0,25,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Content="{x:Static language:WireFormingStudioStrings.Generic_CancelButtonLabel}" 
+                    Command="{Binding CancelEditLrarSegmentCommand}" />
+        </StackPanel>
+    </Grid>
+</aimCoreViews:AimViewBase>

@@ -1,0 +1,58 @@
+﻿<aimCoreViews:AimViewBase x:Class="Aim.WireFormingStudio.Host.Views.Machines.BenderMachineSetUpView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                          xmlns:ig="http://schemas.infragistics.com/xaml"
+                          xmlns:prism="http://prismlibrary.com/"             
+                          xmlns:language="clr-namespace:Aim.WireFormingStudio.Languages;assembly=Aim.WireFormingStudio.Languages"   
+                          prism:ViewModelLocator.AutoWireViewModel="True"
+                          xmlns:aimCoreViews="clr-namespace:Aim.WireFormingStudio.Core.Views;assembly=Aim.WireFormingStudio.Core"
+                          Width="510"
+                          Height="400">
+
+    <Grid x:Name="BenderMachinesSetUpRootLayout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/AosLibraries.UIComponents.WpfResources;component/Styles/AosDataTypesEditorsResourceDictionary.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+                <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        
+        <!-- =========================================================================================================== Machine Properties ========================================================================================== -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ig:XamPropertyGrid x:Name="BenderXamPropertyGrid" MinWidth="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                OptionsMenuVisibility="Hidden" ScrollBarVisibility="Auto" FilterAreaVisibility="Hidden" 
+                                SelectedObject="{Binding ElementName=BenderMachinesSetUpRootLayout, Path=DataContext.SelectedMicroBenderMachine, Mode=TwoWay, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+                <!-- Editor Definitions -->
+                <ig:XamPropertyGrid.EditorDefinitions>
+                    <ig:PropertyGridEditorDefinition TargetType="{x:Type sys:Boolean}" EditTemplate="{StaticResource BoolEditor}" TemplateSelector="{StaticResource CustomSelector}" />
+                    <ig:PropertyGridEditorDefinition TargetType="{x:Type sys:Double}" EditTemplate="{StaticResource SliderDblEditor}" TemplateSelector="{StaticResource CustomSelector}" />
+                </ig:XamPropertyGrid.EditorDefinitions>
+
+                <ig:XamPropertyGrid.ItemFilters>
+                    <ig:PropertyGridConditionGroup LogicalOperator="Or">
+                        <ig:PropertyGridComparisonCondition OperandSource="CategoryName" Operator="Equals" Value="WireBendingMachine" />
+                        <ig:PropertyGridComparisonCondition OperandSource="CategoryName" Operator="Equals" Value="MicroBender" />
+                    </ig:PropertyGridConditionGroup>
+                </ig:XamPropertyGrid.ItemFilters>
+            </ig:XamPropertyGrid>
+        </StackPanel>
+        
+        <!-- ============================================================  Button Controls =============================================================== -->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="3" HorizontalAlignment="Right" VerticalAlignment="Stretch">
+            <Button x:Name="OkBtn" MinWidth="60" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Content="{x:Static language:WireFormingStudioStrings.Generic_OkButtonLabel}" 
+                    Command="{Binding DoAddBenderMachinesCommand}"/>
+            <Button x:Name="CancelBtn" MinWidth="60" Margin="0,0,15,0" HorizontalAlignment="Right" VerticalAlignment="Center"
+                    Content="{x:Static language:WireFormingStudioStrings.Generic_CancelButtonLabel}" 
+                    Command="{Binding CancelAddBenderMachinesCommand}" />
+        </StackPanel>
+    </Grid>
+</aimCoreViews:AimViewBase>

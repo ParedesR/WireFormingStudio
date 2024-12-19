@@ -1,0 +1,352 @@
+﻿<igRibbon:XamRibbonWindow x:Class="Aim.WireFormingStudio.Host.Views.MainView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                          xmlns:igRibbon="http://infragistics.com/Ribbon"  
+                          xmlns:ig="http://schemas.infragistics.com/xaml"
+                          xmlns:igWpf="http://schemas.infragistics.com/xaml/wpf"       
+                          xmlns:igDock="http://infragistics.com/DockManager"       
+                          xmlns:igThemes="http://infragistics.com/Themes"      
+                          xmlns:prism="http://prismlibrary.com/"                                  
+                          prism:ViewModelLocator.AutoWireViewModel="True"
+                          xmlns:language="clr-namespace:Aim.WireFormingStudio.Languages;assembly=Aim.WireFormingStudio.Languages"
+                          xmlns:infrastructure="clr-namespace:Aim.WireFormingStudio.Core;assembly=Aim.WireFormingStudio.Core"                          
+                          xmlns:local="clr-namespace:Aim.WireFormingStudio.Host.Views"                          
+                          WindowStartupLocation="CenterScreen"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          Title="{Binding Title}"                          
+                          Height="800"
+                          Width="1200">
+
+    <!-- ============================================================ Ribbon Window Resources ============================================ -->
+    <igWpf:XamRibbonWindow.Resources>
+        <!-- DataTemplates -->
+        <DataTemplate x:Key="UndoRedoToolItem">
+            <TextBlock Text="Short Description"  Margin="-30,-5" Padding="30,5">
+            <ig:Commanding.Command>
+               <ig:UndoManagerCommandSource EventName="MouseLeftButtonDown" CommandType="UndoRedoHistoryItem" ParameterBinding="{Binding }" />    
+            </ig:Commanding.Command>
+            </TextBlock>
+        </DataTemplate>
+    </igWpf:XamRibbonWindow.Resources>
+
+    <Grid x:Name="MainViewRootLayout" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <igThemes:DockManagerWashBaseDark/>
+                    <igThemes:ResourceWasher AutoWash="True" WashColor="#990000" WashMode="HueSaturationReplacement">
+                        <igThemes:ResourceWasher.SourceDictionary>
+                            <igThemes:DockManagerWashBaseDarkBrushes/>
+                        </igThemes:ResourceWasher.SourceDictionary>
+                    </igThemes:ResourceWasher>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <!-- ====================================================== Main Ribbon Bar ================================================= -->
+        <igRibbon:RibbonWindowContentHost Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <igWpf:RibbonWindowContentHost.Background>
+                <ImageBrush ImageSource="../Resources/Images/background.png" Stretch="UniformToFill"/>
+            </igWpf:RibbonWindowContentHost.Background>
+
+            <igRibbon:RibbonWindowContentHost.Ribbon>
+                <igRibbon:XamRibbon Name="MainViewRibbonToolbar" Height="150" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                  Margin="0,1,0,0" ApplicationMenuMode="Office2010" ApplicationAccentColor="#990000" AllowDragRibbonWindowFromTabArea="False"
+                                  QuickAccessToolbarLocation="AboveRibbon" 
+                                  prism:RegionManager.RegionName="{x:Static infrastructure:HostRegionNames.MainRibbonNavigationRegion}">
+
+                    <!-- ======================================================== Quick Access Tool bar =============================================================== -->
+                    <igRibbon:XamRibbon.QuickAccessToolbar>
+                        <igRibbon:QuickAccessToolbar>
+                            <igRibbon:QatPlaceholderTool TargetId="undoTool" ToolTip="Undo"/>
+                            <igRibbon:QatPlaceholderTool TargetId="redoTool" ToolTip="Redo" />
+                            <igRibbon:QatPlaceholderTool TargetId="saveTool" ToolTip="Save" />
+                        </igRibbon:QuickAccessToolbar>
+                    </igRibbon:XamRibbon.QuickAccessToolbar>
+
+                    <!-- ======================================================= Application Menu ======================================================================= -->
+                    <igRibbon:XamRibbon.ApplicationMenu2010>
+                        <igRibbon:ApplicationMenu2010 x:Name="FileApplicationMenu" Caption="File">
+                            <!-- ================================================= File Application Menu Items ============================================================ -->
+                            <igRibbon:ApplicationMenu2010.Items>
+                                <!-- New Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="N" Image="..\Resources\Images\16x16\NewFile.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="New" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Open Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="O" Image="..\Resources\Images\16x16\OpenFile.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Open" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Close Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="C" Image="..\Resources\Images\16x16\CloseFile.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Close" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Close All Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="CA" Image="..\Resources\Images\16x16\CloseAllFiles.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Close All" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+
+                                <!-- Save Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item  KeyTip="S" Image="..\Resources\Images\16x16\SaveFile.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Save" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Save As Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="SA" Image="..\Resources\Images\16x16\SaveAsFile.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Save As" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Save All Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="SL" Image="..\Resources\Images\16x16\SaveAllFiles.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Save All" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+
+                                <!-- Import File Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="IF" Image="..\Resources\Images\16x16\ImportFile.png"
+                                                                  Command="{Binding ElementName=MainViewRootLayout, Path=DataContext.ShowImportFileViewCommand}">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Import..." Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+
+                                <!-- Bend Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="B" Image="..\Resources\Images\16x16\Bender.png"
+                                                                  Command="{Binding ElementName=MainViewRootLayout, Path=DataContext.ShowBenderMachinesViewCommand}">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Benders" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Bender Setup Menu Item-->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="BS" Image="..\Resources\Images\16x16\BenderSetup.png"
+                                                                  Command="{Binding ElementName=MainViewRootLayout, Path=DataContext.ShowBenderMachineSetUpViewCommand}">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Bender Setup" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+
+                                <!-- Recent Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="R" Image="..\Resources\Images\16x16\RecentDocument.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Recent" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Recent Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="I" Image="..\Resources\Images\16x16\Info.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Info" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <!-- Recent Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="H" Image="..\Resources\Images\16x16\Help.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Help" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+
+                                <!-- Options Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="O" Image="..\Resources\Images\16x16\Options.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Options" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+                                
+                                <!-- Log Out Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="LO" Image="..\Resources\Images\16x16\Logout.png">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Log Out" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+
+                                <igRibbon:ApplicationMenu2010Separator />
+                                
+                                <!-- Exit Menu Item -->
+                                <igRibbon:ApplicationMenu2010Item KeyTip="X" Image="..\Resources\Images\16x16\ExitApplication.png"
+                                                                  Command="{Binding ElementName=MainViewRootLayout, Path=DataContext.ExitApplicationCommand}">
+                                    <igRibbon:ApplicationMenu2010Item.Header>
+                                        <TextBlock Margin="5,0,0,0" Text="Exit" Foreground="White" />
+                                    </igRibbon:ApplicationMenu2010Item.Header>
+                                </igRibbon:ApplicationMenu2010Item>
+                            </igRibbon:ApplicationMenu2010.Items>
+                        </igRibbon:ApplicationMenu2010>
+                    </igRibbon:XamRibbon.ApplicationMenu2010>
+
+                    <igRibbon:XamRibbon.Tabs>
+                        <!-- =========================================================== Edit Tab ============================================================== -->
+                        <igRibbon:RibbonTabItem Header="Edit">
+                            <!-- ================================== Ribbon UndoRedoGroup Collapsed RibbonGroup ================================================= -->
+                            <igRibbon:RibbonGroup Caption="Redo-Undo" Visibility="Collapsed" IsEnabled="True">
+                                <igRibbon:ButtonTool Id="saveTool" igRibbon:RibbonGroup.MaximumSize="ImageOnly" SmallImage="..\Resources\Images\16x16\SaveFile.png"/>
+                                <igRibbon:ButtonTool Id="undoTool" igRibbon:RibbonGroup.MaximumSize="ImageOnly" SmallImage="..\Resources\Images\16x16\Undo.png"/>
+                                <igRibbon:ButtonTool Id="redoTool" igRibbon:RibbonGroup.MaximumSize="ImageOnly" SmallImage="..\Resources\Images\16x16\Redo.png"/>
+                            </igRibbon:RibbonGroup>
+
+                            <!-- ================================================= Edit Visible Groups =========================================================-->
+                            <!-- Document Group -->
+                            <igRibbon:RibbonGroup Caption="Document">
+                                <igRibbon:RibbonGroup.ToolTip>
+                                    <igRibbon:XamRibbonScreenTip Header="Document" FooterSeparatorVisibility="Hidden" Content="Editing commands"/>
+                                </igRibbon:RibbonGroup.ToolTip>
+                                <!-- Cut Command -->
+                                <igRibbon:RadioButtonTool Caption="Cut" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\cut.png"
+                                                  Command="{Binding ElementName=MainViewRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Cut"/>
+                                <!-- Copy Command -->
+                                <igRibbon:RadioButtonTool Caption="Copy" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\copy.png"
+                                                  Command="{Binding ElementName=MainViewRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Copy" />
+                                <!-- Paste Command -->
+                                <igRibbon:RadioButtonTool Caption="Paste" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\paste.png"
+                                                  Command="{Binding ElementName=MainViewRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Paste" />
+                                <igRibbon:SeparatorTool />
+                                <!-- Undo Command -->
+                                <igRibbon:RadioButtonTool Content="Undo" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\Undo.png"
+                                                  Command="{Binding ElementName=MainViewRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Undo" />
+                                <!-- Redo Command -->
+                                <igRibbon:RadioButtonTool Content="Redo" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\Redo.png"
+                                                  Command="{Binding ElementName=MainRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Redo" />
+                                <!-- Delete Command -->
+                                <igRibbon:RadioButtonTool Content="Delete" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\Delete.png" 
+                                                  Command="{Binding ElementName=MainRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Delete"/>
+                                <igRibbon:SeparatorTool />
+                                <igRibbon:ButtonTool igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal" Content="Add"
+                                             SmallImage="..\Resources\Images\16x16\InsertRows.png" 
+                                             Command="{Binding ElementName=MainRibbonToolbar, Path=DataContext.AddRowToDocumentCommand}" />                                
+                            </igRibbon:RibbonGroup>
+                        </igRibbon:RibbonTabItem>
+
+                        <!-- =========================================================== View Tab ============================================================== -->
+                        <igRibbon:RibbonTabItem Header="View">
+                            <igRibbon:RibbonGroup Caption="Data">
+                                <igRibbon:RibbonGroup.ToolTip>
+                                    <igRibbon:XamRibbonScreenTip Header="Data Grid" FooterSeparatorVisibility="Hidden" Content="View Commands"/>
+                                </igRibbon:RibbonGroup.ToolTip>
+                                <!-- Refresh Data Grid Command -->
+                                <igRibbon:RadioButtonTool Caption="Refresh" igRibbon:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                                                  SmallImage="..\Resources\Images\16x16\Refresh.png"
+                                                  Command="{Binding ElementName=MainViewRibbonToolbar, Path=DataContext.DocumentEditCommand}" CommandParameter="Cut"/>
+                            </igRibbon:RibbonGroup>
+                            
+                        </igRibbon:RibbonTabItem>                        
+                    </igRibbon:XamRibbon.Tabs>
+                </igRibbon:XamRibbon>
+            </igRibbon:RibbonWindowContentHost.Ribbon>            
+        </igRibbon:RibbonWindowContentHost>
+
+        <!-- ============================================================ Dock Manager ======================================================== -->
+        <igDock:XamDockManager Name="MainWindowDockManager" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <igDock:XamDockManager.Background>
+                <ImageBrush ImageSource="..\Resources\Images\background.png" Stretch="UniformToFill"/>
+            </igDock:XamDockManager.Background>
+
+            <!-- ============================================================ Main Navigation Pane ================================================== -->
+            <igDock:XamDockManager.Panes>
+                <igDock:SplitPane igDock:XamDockManager.InitialLocation="DockedLeft" SplitterOrientation="Horizontal" Width="200">
+                    <igDock:ContentPane HorizontalAlignment="Stretch" VerticalAlignment="Stretch" igDock:SplitPane.RelativeSize="100,100">
+                    </igDock:ContentPane>
+                    <igDock:TabGroupPane x:Name="MainNavigationTabGroup" prism:RegionManager.RegionName="{x:Static infrastructure:HostRegionNames.MainTabNavigationRegion}"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" igDock:SplitPane.RelativeSize="100,100" />                    
+                </igDock:SplitPane>
+            </igDock:XamDockManager.Panes>
+
+            <!-- ======================================================== Main Content Host ========================================= -->
+            <igDock:DocumentContentHost>
+                <igDock:SplitPane igDock:XamDockManager.InitialLocation="DockedLeft" SplitterOrientation="Horizontal" MinWidth="500">
+                    <!-- Give the TabGroupPane a name with the x:Name attribute so that the region is not destroyed when all views have been removed from the region -->
+                    <igDock:TabGroupPane x:Name="MainTabWorkGroupPane" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" igDock:SplitPane.RelativeSize="100,100"
+                                   prism:RegionManager.RegionName="{x:Static infrastructure:HostRegionNames.MainTabWorkPaneRegion}">
+                    </igDock:TabGroupPane>                    
+                </igDock:SplitPane>
+            </igDock:DocumentContentHost>
+        </igDock:XamDockManager>
+
+        <!-- ============================================================== Status Bar Definition ================================================ -->
+        <StatusBar Grid.Row="2" Background="#FF3333" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid x:Name="StatusBarGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" HorizontalAlignment="Left">
+                <Image Source="..\Resources\Images\AimLogo.jpg" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="1">
+                <Line  X1="0" X2="0" Y1="0" Y2="30" Stroke="White" StrokeThickness="1.5"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="2" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button x:Name="BtnMachineStatus" Content="Machine" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60"
+                       BorderBrush="#990000" Background="Transparent"/>
+                    <Image Source="..\Resources\Images\32x32\Machine.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="25"/>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="3" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button x:Name="BtnSystemStatus" Content="System" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60"
+                       BorderBrush="#990000" Background="Transparent"/>
+                    <Image Source="..\Resources\Images\32x32\System.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="25"/>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="4">
+                <Line  X1="0" X2="0" Y1="0" Y2="30" Stroke="Black" StrokeThickness="1.5"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock x:Name="StatusMessage" Text="{x:Static language:WireFormingStudioStrings.MainView_StatusBar_ReadyStatusMessage}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       MinWidth="400" Margin="3,0,0,0" FontWeight="Bold" FontSize="16" Foreground="White" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</igRibbon:XamRibbonWindow>

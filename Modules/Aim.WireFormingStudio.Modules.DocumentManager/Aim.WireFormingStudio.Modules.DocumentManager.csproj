@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\AosLibraries\Kernel\DataAccess\AosLibraries.Kernel.DataAccess.Repositories\AosLibraries.Kernel.DataAccess.Repositories.csproj" />
+    <ProjectReference Include="..\..\..\..\AosLibraries\Kernel\DomainData\AosLibraries.Kernel.DomainData.Core\AosLibraries.Kernel.DomainData.Core.csproj" />
+    <ProjectReference Include="..\..\..\..\AosLibraries\SharedInterfaces\AosLibraries.SharedInterfaces.CaseDocuments\AosLibraries.SharedInterfaces.CaseDocuments.csproj" />
+    <ProjectReference Include="..\..\Aim.WireFormingStudio.Core\Aim.WireFormingStudio.Core.csproj" />
+  </ItemGroup>
+
+</Project>

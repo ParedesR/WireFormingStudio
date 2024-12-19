@@ -1,0 +1,13 @@
+﻿<aimCoreViews:AimViewBase x:Class="Aim.WireFormingStudio.Modules.EsViewPort.Views.EsViewPortView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
+                          xmlns:prism="http://prismlibrary.com/"             
+                          prism:ViewModelLocator.AutoWireViewModel="True"
+                          xmlns:aimCoreViews="clr-namespace:Aim.WireFormingStudio.Core.Views;assembly=Aim.WireFormingStudio.Core">
+    
+    <Grid x:Name="EsVeiwPortLayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ContentControl Name="CadViewPort" FocusVisualStyle="{x:Null}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      Content="{Binding CadViewPort}">
+        </ContentControl>
+    </Grid>
+</aimCoreViews:AimViewBase>

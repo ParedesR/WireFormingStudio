@@ -1,0 +1,191 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>WireFormingStudio.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\Small\JawDrawIcon.ico" />
+    <None Remove="Resources\Icons\Small\WireFormingStudio.ico" />
+    <None Remove="Resources\Images\16x16\Bender.png" />
+    <None Remove="Resources\Images\16x16\BenderSetup.png" />
+    <None Remove="Resources\Images\16x16\CloseAllFiles.png" />
+    <None Remove="Resources\Images\16x16\CloseFile.png" />
+    <None Remove="Resources\Images\16x16\Copy.png" />
+    <None Remove="Resources\Images\16x16\Cut.png" />
+    <None Remove="Resources\Images\16x16\Delete.png" />
+    <None Remove="Resources\Images\16x16\Edit.png" />
+    <None Remove="Resources\Images\16x16\ExitApplication.png" />
+    <None Remove="Resources\Images\16x16\ExportFile.png" />
+    <None Remove="Resources\Images\16x16\Help.png" />
+    <None Remove="Resources\Images\16x16\Home.png" />
+    <None Remove="Resources\Images\16x16\ImportFile.png" />
+    <None Remove="Resources\Images\16x16\Info.png" />
+    <None Remove="Resources\Images\16x16\InsertRows.png" />
+    <None Remove="Resources\Images\16x16\Logout.png" />
+    <None Remove="Resources\Images\16x16\Machine.png" />
+    <None Remove="Resources\Images\16x16\NewFile.png" />
+    <None Remove="Resources\Images\16x16\Objects.png" />
+    <None Remove="Resources\Images\16x16\OpenFile.png" />
+    <None Remove="Resources\Images\16x16\Options.png" />
+    <None Remove="Resources\Images\16x16\Paste.png" />
+    <None Remove="Resources\Images\16x16\RecentDocument.png" />
+    <None Remove="Resources\Images\16x16\Redo.png" />
+    <None Remove="Resources\Images\16x16\Refresh.png" />
+    <None Remove="Resources\Images\16x16\SaveAllFiles.png" />
+    <None Remove="Resources\Images\16x16\SaveAsFile.png" />
+    <None Remove="Resources\Images\16x16\SaveFile.png" />
+    <None Remove="Resources\Images\16x16\Template.png" />
+    <None Remove="Resources\Images\16x16\Undo.png" />
+    <None Remove="Resources\Images\24x24\Arc-24.png" />
+    <None Remove="Resources\Images\24x24\Circle.png" />
+    <None Remove="Resources\Images\24x24\Cone.png" />
+    <None Remove="Resources\Images\24x24\Cylinder.png" />
+    <None Remove="Resources\Images\24x24\Line-24.png" />
+    <None Remove="Resources\Images\24x24\Sphere.png" />
+    <None Remove="Resources\Images\24x24\Torus.png" />
+    <None Remove="Resources\Images\32x32\Assistant.png" />
+    <None Remove="Resources\Images\32x32\Machine.png" />
+    <None Remove="Resources\Images\32x32\System.png" />
+    <None Remove="Resources\Images\32x32\Tools.png" />
+    <None Remove="Resources\Images\AimLogo.jpg" />
+    <None Remove="Resources\Images\background.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Icons\Large\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.4.4" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.8.0" />
+    <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+    <PackageReference Include="Unity.Abstractions" Version="5.11.7" />
+    <PackageReference Include="Unity.Container" Version="5.11.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\AosLibraries\HardwareDevices\Machines\AosLibraries.HardwareDevices.Benders\AosLibraries.HardwareDevices.Benders.csproj" />
+    <ProjectReference Include="..\..\..\AosLibraries\Kernel\DataAccess\AosLibraries.Kernel.DataAccess.Repositories\AosLibraries.Kernel.DataAccess.Repositories.csproj" />
+    <ProjectReference Include="..\..\..\AosLibraries\SharedInterfaces\AosLibraries.SharedInterfaces.CaseDocuments\AosLibraries.SharedInterfaces.CaseDocuments.csproj" />
+    <ProjectReference Include="..\..\..\AosLibraries\UIComponents\AosLibraries.UIComponents.WpfResources\AosLibraries.UIComponents.WpfResources.csproj" />
+    <ProjectReference Include="..\Aim.WireFormingStudio.Core\Aim.WireFormingStudio.Core.csproj" />
+    <ProjectReference Include="..\Aim.WireFormingStudio.Languages\Aim.WireFormingStudio.Languages.csproj" />
+    <ProjectReference Include="..\Modules\Aim.WireFormingStudio.Modules.BenderController\Aim.WireFormingStudio.Modules.BenderController.csproj" />
+    <ProjectReference Include="..\Modules\Aim.WireFormingStudio.Modules.DocumentManager\Aim.WireFormingStudio.Modules.DocumentManager.csproj" />
+    <ProjectReference Include="..\Modules\Aim.WireFormingStudio.Modules.EsViewPort\Aim.WireFormingStudio.Modules.EsViewPort.csproj" />
+    <ProjectReference Include="..\Modules\Aim.WireFormingStudio.Modules.SmartEditor\Aim.WireFormingStudio.Modules.SmartEditor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamMaskedInput.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Controls.Editors.XamMaskedInput.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Controls.Editors.XamPropertyGrid.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataManager.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.DataManager.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DockManager.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.DockManager.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Editors.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Editors.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.OutlookBar.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.OutlookBar.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Ribbon.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Ribbon.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.Fall.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.Fall.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.ForestGreen.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.ForestGreen.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.IG.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.IG.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.Metro.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.Metro.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.MetroDark.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.MetroDark.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.Office2010Blue.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.Office2010Blue.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Themes.Office2013.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Themes.Office2013.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.Undo.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.Undo.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v19.1">
+      <HintPath>..\..\..\AosLibraries\ThirdPartyLibraries\Infragistics\WPF_20191_Bin_Signed\InfragisticsWPF4.v19.1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Small\JawDrawIcon.ico" />
+    <Resource Include="Resources\Icons\Small\WireFormingStudio.ico" />
+    <Resource Include="Resources\Images\16x16\Bender.png" />
+    <Resource Include="Resources\Images\16x16\BenderSetup.png" />
+    <Resource Include="Resources\Images\16x16\CloseAllFiles.png" />
+    <Resource Include="Resources\Images\16x16\CloseFile.png" />
+    <Resource Include="Resources\Images\16x16\Copy.png" />
+    <Resource Include="Resources\Images\16x16\Cut.png" />
+    <Resource Include="Resources\Images\16x16\Delete.png" />
+    <Resource Include="Resources\Images\16x16\Edit.png" />
+    <Resource Include="Resources\Images\16x16\ExitApplication.png" />
+    <Resource Include="Resources\Images\16x16\ExportFile.png" />
+    <Resource Include="Resources\Images\16x16\Help.png" />
+    <Resource Include="Resources\Images\16x16\Home.png" />
+    <Resource Include="Resources\Images\16x16\ImportFile.png" />
+    <Resource Include="Resources\Images\16x16\Info.png" />
+    <Resource Include="Resources\Images\16x16\InsertRows.png" />
+    <Resource Include="Resources\Images\16x16\Logout.png" />
+    <Resource Include="Resources\Images\16x16\Machine.png" />
+    <Resource Include="Resources\Images\16x16\NewFile.png" />
+    <Resource Include="Resources\Images\16x16\Objects.png" />
+    <Resource Include="Resources\Images\16x16\OpenFile.png" />
+    <Resource Include="Resources\Images\16x16\Options.png" />
+    <Resource Include="Resources\Images\16x16\Paste.png" />
+    <Resource Include="Resources\Images\16x16\RecentDocument.png" />
+    <Resource Include="Resources\Images\16x16\Redo.png" />
+    <Resource Include="Resources\Images\16x16\Refresh.png" />
+    <Resource Include="Resources\Images\16x16\SaveAllFiles.png" />
+    <Resource Include="Resources\Images\16x16\SaveAsFile.png" />
+    <Resource Include="Resources\Images\16x16\SaveFile.png" />
+    <Resource Include="Resources\Images\16x16\Template.png" />
+    <Resource Include="Resources\Images\16x16\Undo.png" />
+    <Resource Include="Resources\Images\24x24\Arc-24.png" />
+    <Resource Include="Resources\Images\24x24\Circle.png" />
+    <Resource Include="Resources\Images\24x24\Cone.png" />
+    <Resource Include="Resources\Images\24x24\Cylinder.png" />
+    <Resource Include="Resources\Images\24x24\Line-24.png" />
+    <Resource Include="Resources\Images\24x24\Sphere.png" />
+    <Resource Include="Resources\Images\24x24\Torus.png" />
+    <Resource Include="Resources\Images\32x32\Assistant.png" />
+    <Resource Include="Resources\Images\32x32\Machine.png" />
+    <Resource Include="Resources\Images\32x32\System.png" />
+    <Resource Include="Resources\Images\32x32\Tools.png" />
+    <Resource Include="Resources\Images\AimLogo.jpg" />
+    <Resource Include="Resources\Images\background.png" />
+  </ItemGroup>
+
+</Project>

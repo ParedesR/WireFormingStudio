@@ -1,0 +1,71 @@
+﻿<aimCoreViews:AimViewBase x:Class="Aim.WireFormingStudio.Modules.SmartEditor.Views.SmartEditorView"
+                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                          
+                          xmlns:igDP="http://infragistics.com/DataPresenter"
+                          xmlns:prism="http://prismlibrary.com/"             
+                          prism:ViewModelLocator.AutoWireViewModel="True"
+                          xmlns:aimCoreViews="clr-namespace:Aim.WireFormingStudio.Core.Views;assembly=Aim.WireFormingStudio.Core">
+    
+    <Grid x:Name="SmartEditorLayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Button x:Name="BtnAdd" Margin="1,1,0,1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding AddRecordCommand}">
+                <StackPanel>
+                    <Image Source="..\Resources\Images\16x16\Add.png"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="BtnInsert" Margin="1,1,0,1"  HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding InsertRecordCommand}">
+                <StackPanel>
+                    <Image Source="..\Resources\Images\16x16\Insert.png"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="BtnDelete" Margin="1,1,0,1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding DeleteRecordCommand}">
+                <StackPanel>
+                    <Image Source="..\Resources\Images\16x16\Delete.png"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="BtnMoveUp" Margin="15,0,0,1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding MoveUpRecordCommand}">
+                <StackPanel>
+                    <Image Source="..\Resources\Images\16x16\MoveUp.png"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="BtnMoveDown" Margin="1,1,0,1" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding MoveDownRecordCommand}">
+                <StackPanel>
+                    <Image Source="..\Resources\Images\16x16\MoveDown.png"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <igDP:XamDataGrid x:Name="SmartEditorDataGrid" Grid.Row="1" Margin="0,3,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Theme="Metro"
+                          DataSource="{Binding SegmentsAsLrarCollection}" SelectedDataItemsScope="RecordsOnly"
+                          EditModeEnded="SmartEditorDataGrid_EditModeEnded" SelectedItemsChanged="SmartEditorDataGrid_SelectedItemsChanged">
+            <igDP:XamDataGrid.FieldLayoutSettings>
+                <igDP:FieldLayoutSettings AutoGenerateFields="False" HighlightAlternateRecords="True" FilterUIType="LabelIcons" RecordSelectorNumberType="None"
+                                          AllowAddNew="True" AddNewRecordLocation="OnTopFixed" AllowDelete="True"/>
+            </igDP:XamDataGrid.FieldLayoutSettings>
+            <igDP:XamDataGrid.FieldSettings>
+                <igDP:FieldSettings AllowRecordFiltering="True" FilterLabelIconDropDownType="MultiSelectExcelStyle" AllowSummaries="False" 
+                                    SummaryDisplayArea="InGroupByRecords" AllowFixing="No" AllowEdit="True" IsAutoEditModeEnabled="True" CellClickAction="SelectCell">
+                </igDP:FieldSettings>
+            </igDP:XamDataGrid.FieldSettings>                            
+            <igDP:XamDataGrid.FieldLayouts>
+                <igDP:FieldLayout Key="LRAr">
+                    <igDP:FieldLayout.Settings>
+                        <igDP:FieldLayoutSettings AllowAddNew="True" AddNewRecordLocation="OnTopFixed"/>
+                    </igDP:FieldLayout.Settings>
+                    <igDP:NumericField Name="SequenceStep" Label="Step" Width="70" />
+                    <igDP:NumericField Name="Length" Label="Length" />
+                    <igDP:NumericField Name="Rotation" Label="Rotation" />
+                    <igDP:NumericField Name="Angle" Label="Angle" />
+                    <igDP:NumericField Name="Radius" Label="Radius" />
+                    <igDP:NumericField Name="AngleSpeed" Label="Speed"/>
+                    <igDP:TextField Name="Flags" Label="Flags"/>
+                    <igDP:TextField Name="InputOutput" Label="I/O"/>
+                    <igDP:TextField Name="Notes" Label="Notes"/>
+                </igDP:FieldLayout>                
+            </igDP:XamDataGrid.FieldLayouts>
+        </igDP:XamDataGrid>            
+    </Grid>
+</aimCoreViews:AimViewBase>

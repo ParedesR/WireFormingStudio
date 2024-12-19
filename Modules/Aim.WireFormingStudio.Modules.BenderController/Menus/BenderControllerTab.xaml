@@ -1,0 +1,68 @@
+﻿<igWpf:RibbonTabItem x:Class="Aim.WireFormingStudio.Modules.BenderController.Menus.BenderControllerTab"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                     xmlns:prism="http://prismlibrary.com/"
+                     xmlns:ig="http://schemas.infragistics.com/xaml"
+                     xmlns:igWpf="http://schemas.infragistics.com/xaml/wpf"
+                     xmlns:igRibbon="http://infragistics.com/Ribbon"
+                     xmlns:igEditors="http://infragistics.com/Editors"
+                     xmlns:igDock="http://infragistics.com/DockManager"       
+                     xmlns:igThemes="http://infragistics.com/Themes"     
+                     xmlns:language="clr-namespace:Aim.WireFormingStudio.Languages;assembly=Aim.WireFormingStudio.Languages"
+                     xmlns:infrastructure="clr-namespace:Aim.WireFormingStudio.Core;assembly=Aim.WireFormingStudio.Core"
+                     xmlns:local="clr-namespace:Aim.WireFormingStudio.Modules.BenderController.Menus"
+                     Header="{x:Static language:WireFormingStudioStrings.BenderController_View_Title}">
+
+    <igWpf:RibbonGroup Id="JogCommands" Caption="Jog Commands">
+        <igWpf:ToolVerticalWrapPanel>
+            <igWpf:RadioButtonTool Content="Slow" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <igWpf:RadioButtonTool Content="Medium" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <igWpf:RadioButtonTool Content="Fast" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </igWpf:ToolVerticalWrapPanel>
+        <igWpf:SeparatorTool />
+        <igWpf:ToolVerticalWrapPanel>
+            <igWpf:ButtonTool Caption="Home" igWpf:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                              SmallImage="..\Resources\Images\16x16\Home.png" />
+            <igWpf:ButtonTool Caption="Stop" igWpf:RibbonGroup.MaximumSize="ImageAndTextNormal"
+                              SmallImage="..\Resources\Images\16x16\StopSign.png" />
+        </igWpf:ToolVerticalWrapPanel>
+        <igWpf:SeparatorTool />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Distance" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                       FontWeight="Bold" />
+            <igEditors:XamNumericEditor Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" SpinIncrement="1" SpinButtonDisplayMode="Always">
+                <igEditors:XamNumericEditor.ValueConstraint>
+                    <igEditors:ValueConstraint MaxInclusive="100" MinInclusive="1"/>
+                </igEditors:XamNumericEditor.ValueConstraint>
+            </igEditors:XamNumericEditor>
+            <igWpf:ButtonTool Content="Forward" Grid.Column="0" Grid.Row="2"
+                              SmallImage="..\Resources\Images\16x16\InsideBorders.png" />
+            <igWpf:ButtonTool Caption="Backward" Grid.Column="1" Grid.Row="2"
+                              SmallImage="..\Resources\Images\16x16\InsideHorizontalBorder.png" />
+        </Grid>
+        <igWpf:SeparatorTool />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Position" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Bold" />
+            <igRibbon:TextEditorTool Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="2"
+                                     Text="{Binding ZAxisMoveToPosition, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <igWpf:ButtonTool Content="MoveTo" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center"
+                              SmallImage="..\Resources\Images\16x16\GoTo.png" />
+        </Grid>
+    </igWpf:RibbonGroup>
+</igWpf:RibbonTabItem>
